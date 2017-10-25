@@ -10,7 +10,7 @@ I've not had to use docker/kubernetes/anything like that as Hadean sorts all tha
 
 My approach uses an octree with cells stored by Morton (Z-Order) index. A leaf cell in the tree corresponds to a single worker/core. New cells will be dynamically spawned when the entitIes move out of the live area, and despawned when they’re empty. Cells will also be subdivided when the load in a single cell increases beyond a threshold, this will maintain an almost constant amount of computation per worker.
 
-More info on [HackerNews](https://news.ycombinator.com)
+More info on [HackerNews](https://news.ycombinator.com/item?id=15550922)
 
 [Youtube Video - 48 and 128 workers](https://www.youtube.com/watch?v=w2fKRy5zC54)
 
