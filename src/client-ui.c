@@ -19,44 +19,6 @@ static void error_callback(int error, const char* description) {
 uint64_t num_workers = 0;
 
 void process_packet(struct client_message *message, uint64_t id) {
-    /*static uint64_t num_workers = 1024;
-    static uint64_t *current_ticks = NULL;
-    static float *pings = NULL;
-    if (!current_ticks)
-        current_ticks = calloc(num_workers, sizeof(uint64_t));
-    if (!pings)
-        pings = calloc(num_workers, sizeof(float));
-
-    if (id >= num_workers) {
-        while (id >= num_workers)
-            num_workers *= 2;
-        current_ticks = realloc(current_ticks, sizeof(uint64_t) * num_workers);
-        pings = realloc(pings, sizeof(float) * num_workers);
-    }
-    assert(message->current_tick = current_ticks[id] + 1);
-    current_ticks[id] = message->current_tick;
-    message->ping_message.send_time[3] = timer_get();
-    float ping0_1 = timer_diff(
-        message->ping_message.send_time[0],
-        message->ping_message.send_time[1]
-    ) * 1000;
-    float ping1_3 = timer_diff(
-        message->ping_message.send_time[1],
-        message->ping_message.send_time[3]
-    ) * 1000;
-    //calculate EWMA of pings per worker
-    float alpha = 0.95;
-    float ping = pings[message->worker_id];
-    ping = (1 - alpha) * ping1_3 + alpha * ping;
-    pings[message->worker_id] = ping;
-    if (message->current_tick % 1 == 0 && message->worker_id == 0) {
-        float average = 0;
-        for (uint32_t i = 0; i < 9; i++) {
-            printf("%8.3fms ", pings[i]);
-            average += pings[i] / 9;
-        }
-        printf("avg %8.3fms\n", average);
-    }*/
     //do some point movement
     float time = glfwGetTime();
     if (id + 1 > num_workers) {
@@ -261,15 +223,6 @@ void* opengl_init_and_loop(void *arg) {
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) || glfwGetKey(window, GLFW_KEY_Q)) {
             glfwSetWindowShouldClose(window, true);
         }
-        /*if (glfwGetKey(window, GLFW_KEY_F)) {
-            if (glfwGetWindowMonitor(window)) {
-                //currently fullscreen
-                glfwSetWindowMonitor(window, NULL, 0, 0, 1920, 1080, 60);
-            } else {
-                //currently windowed
-                glfwSetWindowMonitor(window, glfwGetPrimaryMonitor(), 0, 0, 1920, 1080, 60);
-            }
-        }*/
         if (glfwGetKey(window, GLFW_KEY_W))
             camera_pos.z -= 0.1;
         if (glfwGetKey(window, GLFW_KEY_A))
@@ -282,10 +235,6 @@ void* opengl_init_and_loop(void *arg) {
             camera_pos.y += 0.1;
         if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL))
             camera_pos.y -= 0.1;
-        /*if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT))
-            camera_pos.z += 0.1;
-        if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT))
-            camera_pos.z -= 0.1;*/
         if (glfwWindowShouldClose(window)) {
             printf("%7.3ffps\n", frames / glfwGetTime());
             glfwDestroyWindow(window);
