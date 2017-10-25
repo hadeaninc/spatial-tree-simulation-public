@@ -19,3 +19,9 @@ Progress Diagram
 
 Motivation
 ![motivation](mood_board.png)
+
+
+- `src/master.c` is the master process in the cloud, that spawns the workers
+- `src/worker.c` is the worker code that runs on each spawned process
+- `src/client.c` is the local code which receives points via TCP `src/client-tcp.c` and displays them using OpenGL `src/client-ui.c`
+- `src/simulate.c` is where the actual simulation is performed (coulomb attraction/repulsion and swarm behaviour, although swarm behaviour isn't well tested)
