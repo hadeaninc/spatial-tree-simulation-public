@@ -1,6 +1,14 @@
 # Spatial Tree Simulation
 
-This repo provides some sample code which spawns many workers across multiple machines, performing O(N^2) simulation on each. Spawning and communication between workers and machines is handled by the Hadean platform.
+This repo is a working SpatialOS prototype which spawns many worker processes across multiple machines, performing O(N^2) simulation on each. Spawning and communication between workers and machines is handled by the Hadean platform.
+
+The simulation results are streamed in real-time from a cloud, maxing out our connection at 80mbps, at 128 workers across multiple machines. The code is the same for developing on a small laptop, and running at scale on many machines in the cloud.
+
+The workers are compute bound, doing an O(N^2) simulation on 500 points each. By running many workers (across multiple machines) we can get far past this limit. And the Hadean platform makes all this spawning and communication as simple as running on a single machine.
+
+I've not had to use docker/kubernetes/anything like that as Hadean sorts all that infrastructure management out. I send a single binary to it.
+
+My approach uses an octree with cells stored by Morton (Z-Order) index. A leaf cell in the tree corresponds to a single worker/core. New cells will be dynamically spawned when the entitIes move out of the live area, and despawned when they’re empty. Cells will also be subdivided when the load in a single cell increases beyond a threshold, this will maintain an almost constant amount of computation per worker.
 
 More info on [HackerNews](https://news.ycombinator.com)
 
