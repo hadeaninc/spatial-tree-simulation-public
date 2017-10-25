@@ -12,7 +12,7 @@ My approach uses an octree with cells stored by Morton (Z-Order) index. A leaf c
 
 More info on [HackerNews](https://news.ycombinator.com)
 
-More info on [Youtube - 48 Workers](https://www.youtube.com/watch?v=0U0fzF3Fy9E), [Youtube - 128 Workers](https://www.youtube.com/watch?v=8TgeBZScRmE)
+[Youtube Video - 48 and 128 workers](https://www.youtube.com/watch?v=w2fKRy5zC54)
 
 Progress Diagram
 ![progress diagram](progress_diagram.svg)
