@@ -8,3 +8,6 @@ More info on [Youtube - 48 Workers](https://www.youtube.com/watch?v=8TgeBZScRmE)
 
 Progress Diagram
 ![progress diagram](progress_diagram.svg)
+
+Motivation
+![motivation](mood_board.png)
